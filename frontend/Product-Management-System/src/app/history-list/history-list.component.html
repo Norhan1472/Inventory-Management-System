@@ -1,0 +1,37 @@
+<button (click)="generatePdf()">Generate Pdf</button>
+
+<div class="container">
+<p>Click the button for export PDF file.</p>
+<a href="http://localhost:8080/api/history/v1/export-to-pdf" class="btn btn-primary">Download PDF File</a>
+</div>
+
+<div id="MyDIv" style="margin-left: 45px;" class="main-container">
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Employee Name</th>
+      <th>Product Name</th>
+      <th>Serial Number</th>
+      <th>Brand</th>
+      <th>Description</th>
+      <th>Date receive</th>
+      <th>Date retrieve</th>
+      <th>reason</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let history of histories">
+      <td>{{history.empName}}</td>
+      <td>{{history.productName}}</td>
+      <td>{{history.serialNumber}}</td>
+      <td>{{history.brand}}</td>
+      <td>{{history.description}}</td>
+      <td>{{history.dateReceived}}</td>
+      <td>{{history.dateRetrieved}}</td>
+      <td>{{history.reason}}</td>
+    </tr>
+</tbody>
+    </table>
+</div>
+  <!--(click)="downloadPdf()"-->

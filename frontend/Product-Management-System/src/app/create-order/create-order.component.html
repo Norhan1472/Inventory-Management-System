@@ -1,0 +1,52 @@
+<p>create-order works!</p>
+
+      <form  (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label >Employee Name</label>
+          
+          <input [(ngModel)]="orders.empName" [ngModelOptions]="{standalone: true}"
+          name="empName" class="form-control" type="text" >
+
+          <label >National ID</label>
+          <input [(ngModel)]="orders.nationalId" [ngModelOptions]="{standalone: true}"
+          name="nationalId" class="form-control" type="text" >
+          
+          <label >Employee email</label>
+          <input [(ngModel)]="orders.email" [ngModelOptions]="{standalone: true}"
+          name="email" class="form-control" type="text" >
+          
+          <label >Product Description</label>
+          <input [(ngModel)]="orders.description" [ngModelOptions]="{standalone: true}"
+          name="description" class="form-control" type="text" >
+          
+        </div>
+        <form [formGroup]="form">
+        <div formArrayName="product">
+          <div
+            *ngFor="let productGroup of productArray.controls; let i = index"
+            [formGroupName]="i"
+          >
+            <h3>Product - {{i + 1}}</h3>
+            <div class="form-group" >
+              <select class="form-control" formControlName="productName" (change)=" onSelectedProduct($event,i)">
+                <option selected="true" disabled="disabled">Choose a product name</option>
+                <option *ngFor="let product of products" [value]="product.productId">
+                    {{product.productName}}
+                </option>
+            </select>
+              
+          </div>
+            <input type="text" formControlName="category" placeholder="Category" />
+            <input type="text" formControlName="brand" placeholder="Brand" />
+          </div>   
+        <br>
+      
+        <button (click)="addProduct()" class="btn btn-outline-primary">Add Product</button>
+        </div>
+      </form>
+        <br>
+        <br>
+        <button type="submit" class="btn btn-success" >Submit</button>  
+        
+      </form>
+      
